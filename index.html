@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="CEPV WebMCP Challenge adapter: auditable specialist execution, evidence recording, human validation, and a derived final gate.">
+  <title>CEPV × WebMCP — Auditable Human-Agent Review</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><div class="wrap"><div class="brand">CEPV × WebMCP</div><div id="webmcp-status" class="status warn">Checking WebMCP…</div></div></header>
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">WebMCP Challenge adapter · post-2026-08-25 work</div>
+    <h1>Agents can execute. Humans still adjudicate.</h1>
+    <p>This adapter exposes the pre-existing CEPV execution contract as structured browser tools. An agent can inspect the contract, record check results, submit evidence-backed candidate findings, and export an audit packet. Human confirmation remains a separate UI-only step.</p>
+    <div class="disclosure"><b>Integrity boundary:</b> this page does not claim CEPV is more accurate than a baseline. Coverage is not accuracy. The confirmatory ground truth is not embedded here. The original CEPV engine and benchmark logic are not modified by this adapter.</div>
+  </section>
+
+  <section class="grid">
+    <article class="panel">
+      <h2>Session artifact</h2>
+      <p class="meta">One artifact can be referenced by distinct baseline and specialist finding lanes. This demo stores data only in this browser.</p>
+      <label>Artifact label<input id="artifact-label" maxlength="200" autocomplete="off"></label>
+      <label>Public demo note / excerpt<textarea id="artifact-note" maxlength="2000" placeholder="Use synthetic or public text only. Do not paste reserved benchmark ground truth or sensitive documents."></textarea></label>
+      <div class="controls"><div class="meta">Local fingerprint: <code id="artifact-fingerprint">not set</code></div><button id="save-artifact" type="button">Save + fingerprint</button></div>
+      <p class="meta">Session: <code id="session-id"></code></p>
+    </article>
+
+    <article class="panel">
+      <h2>Derived final gate</h2>
+      <div id="gate" class="gate blocked"><h3 id="gate-title"></h3><p id="gate-reason"></p><div id="gate-counts" class="meta"></div></div>
+      <p class="meta">CHECK-008 is derived. Neither the agent nor the human UI can directly mark it as passed.</p>
+    </article>
+  </section>
+
+  <section class="panel">
+    <h2>Specialist execution contract</h2>
+    <p class="meta">CHECK-001..CHECK-007 are recorded by execution. CHECK-008 blocks unrestricted approval whenever required work is not run, blocked, failed, pending human validation, or confirmed as an unresolved issue.</p>
+    <div id="checks" class="checks"></div>
+  </section>
+
+  <section class="grid">
+    <article class="panel">
+      <h2>Human-side finding entry</h2>
+      <p class="meta">This mirrors what an agent can submit through WebMCP. Agent findings are always pending until a human reviews them here.</p>
+      <form id="finding-form" class="form-grid">
+        <label>Run<select name="run" id="run"><option value="specialist">Specialist / CEPV</option><option value="baseline">Baseline</option></select></label>
+        <label id="check-wrap">Check<select name="check_id" id="check-id">
+          <option>CHECK-001</option><option>CHECK-002</option><option>CHECK-003</option><option>CHECK-004</option><option>CHECK-005</option><option>CHECK-006</option><option>CHECK-007</option>
+        </select></label>
+        <label>Severity<select name="severity"><option value="low">low</option><option value="medium" selected>medium</option><option value="high">high</option><option value="critical">critical</option></select></label>
+        <label class="full">Summary<input name="summary" minlength="3" maxlength="1000" required></label>
+        <label class="full">Evidence<textarea name="evidence" minlength="3" maxlength="4000" required></textarea></label>
+        <div class="full"><button type="submit">Submit candidate finding</button></div>
+      </form>
+    </article>
+
+    <article class="panel">
+      <h2>Agent tool surface</h2>
+      <p class="meta">Registered through the current imperative API when <code>document.modelContext</code> is available:</p>
+      <ul>
+        <li><code>cepv_get_contract</code> — read the frozen contract and invariants.</li>
+        <li><code>cepv_run_preflight</code> — expose every check state and the derived gate.</li>
+        <li><code>cepv_record_check_result</code> — record passed/blocked/failed for CHECK-001..007.</li>
+        <li><code>cepv_submit_candidate_finding</code> — add an evidence-backed baseline or specialist finding.</li>
+        <li><code>cepv_list_findings</code> — inspect findings without changing them.</li>
+        <li><code>cepv_export_audit_packet</code> — export the traceable session snapshot.</li>
+      </ul>
+      <p class="meta"><b>Not exposed:</b> human confirmation/rejection. That boundary is deliberate.</p>
+    </article>
+  </section>
+
+  <section class="panel">
+    <h2>Findings and human adjudication</h2>
+    <div id="findings" class="findings"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Audit controls</h2>
+    <div class="footer-actions"><button id="export" type="button">Export audit JSON</button><button id="reset" class="danger" type="button">Reset local demo</button></div>
+  </section>
+</main>
+<footer><div class="wrap">CEPV — Companheiros Especialistas com Progresso Validado · WebMCP adapter v0.1 · no external network calls · no API key in browser.</div></footer>
+<script src="state.js"></script>
+<script src="webmcp.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
