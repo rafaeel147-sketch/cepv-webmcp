@@ -2,6 +2,8 @@
 
 **Auditable human-agent specialist execution for the OpenAI WebMCP Challenge.**
 
+[![CEPV WebMCP verification](https://github.com/rafaeel147-sketch/cepv-webmcp/actions/workflows/verify.yml/badge.svg)](https://github.com/rafaeel147-sketch/cepv-webmcp/actions/workflows/verify.yml)
+
 CEPV — **Companheiros Especialistas com Progresso Validado** — is a pre-existing project for making specialist AI execution explicit, traceable and measurable. This repository contains the **new WebMCP adapter created during the Challenge period**; it does not replace or rewrite the original CEPV engine.
 
 ## Preserved CEPV core
@@ -43,13 +45,14 @@ If WebMCP is unavailable, the human UI remains usable and reports that tool regi
 
 ## Verification status
 
-Automated/local verification completed before this dedicated repository was populated:
+Automated/local verification completed before this dedicated repository was populated, and the same verification is now enforced by GitHub Actions on pushes and pull requests.
 
 - JavaScript syntax checks: PASS (`state.js`, `webmcp.js`, `app.js`)
 - CEPV state/invariant tests: **12/12 PASS**
 - WebMCP registration/fallback tests: **3/3 PASS**
 - total deterministic tests: **15/15 PASS**
-- local HTTP smoke test: PASS
+- static HTTP smoke test: PASS
+- dedicated-repository GitHub Actions verification: **PASS**
 
 A real WebMCP-capable browser end-to-end run is still required before final submission. See [`TEST_PLAN.md`](TEST_PLAN.md).
 
