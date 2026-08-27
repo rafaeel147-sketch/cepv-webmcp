@@ -1,0 +1,39 @@
+name: CEPV WebMCP verification
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: JavaScript syntax
+        run: |
+          node --check state.js
+          node --check webmcp.js
+          node --check app.js
+
+      - name: CEPV deterministic tests
+        run: |
+          node tests/state.test.js
+          node tests/webmcp.test.js
+
+      - name: Static HTTP smoke test
+        run: |
+          python3 -m http.server 8080 > /tmp/cepv-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID' EXIT
+          sleep 1
+          curl --fail --silent http://127.0.0.1:8080/ | grep -q 'CEPV × WebMCP'
