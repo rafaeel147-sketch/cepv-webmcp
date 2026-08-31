@@ -1,0 +1,47 @@
+[
+  {
+    "id": "blind-001",
+    "summary": "The outreach unit is available three days each week.",
+    "evidence": "The outreach unit operates Tuesday, Wednesday, and Thursday, from 09:00 to 15:00."
+  },
+  {
+    "id": "blind-002",
+    "summary": "Thirty-one of forty invited participants completed the feedback survey.",
+    "evidence": "The feedback survey invited 40 participants, and 31 completed it."
+  },
+  {
+    "id": "blind-003",
+    "summary": "The QR destination can be opened without a login.",
+    "evidence": "The public QR code directs to https://example.org/raps/info and does not require login."
+  },
+  {
+    "id": "blind-004",
+    "summary": "The pilot proved that the workflow reduces missed referrals.",
+    "evidence": "The pilot note says the workflow may reduce missed referrals; it does not claim causation or superiority over the baseline."
+  },
+  {
+    "id": "blind-005",
+    "summary": "The outreach unit operates Monday through Friday from 09:00 to 15:00.",
+    "evidence": "The outreach unit operates Tuesday, Wednesday, and Thursday, from 09:00 to 15:00."
+  },
+  {
+    "id": "blind-006",
+    "summary": "The consent form is embedded in the printed booklet.",
+    "evidence": "The consent form is a separate document and is not embedded in the booklet."
+  },
+  {
+    "id": "blind-007",
+    "summary": "The guide lists 18 referral destinations.",
+    "evidence": "The orientation guide version 2.4 lists 18 referral destinations."
+  },
+  {
+    "id": "blind-008",
+    "summary": "The QR code directs users to a login page.",
+    "evidence": "The public QR code directs to https://example.org/raps/login and requires authentication."
+  },
+  {
+    "id": "blind-009",
+    "summary": "The follow-up review is planned for 30 September 2026.",
+    "evidence": "The follow-up review is planned for 30 September 2026."
+  }
+]
