@@ -45,9 +45,9 @@ test('MAC-013 is exposed as candidate capability', () => {
 
 test('supported/misinterpreted/unsupported produce one-third rates', () => {
   const s = S.freshState();
-  const a = addSpecialistFinding(s, 'A');
-  const b = addSpecialistFinding(s, 'B');
-  const c = addSpecialistFinding(s, 'C');
+  const a = addSpecialistFinding(s, 'Finding A');
+  const b = addSpecialistFinding(s, 'Finding B');
+  const c = addSpecialistFinding(s, 'Finding C');
   S.reviewEvidence(a.id, 'supported');
   S.reviewEvidence(b.id, 'misinterpreted');
   S.reviewEvidence(c.id, 'unsupported');
@@ -65,8 +65,8 @@ test('supported/misinterpreted/unsupported produce one-third rates', () => {
 
 test('unreviewed findings lower review coverage without changing reviewed denominator', () => {
   const s = S.freshState();
-  const a = addSpecialistFinding(s, 'A');
-  addSpecialistFinding(s, 'B');
+  const a = addSpecialistFinding(s, 'Finding A');
+  addSpecialistFinding(s, 'Finding B');
   S.reviewEvidence(a.id, 'supported');
   const m = S.evidenceMetrics(s, 'specialist');
   assert.strictEqual(m.totalFindings, 2);
