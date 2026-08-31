@@ -1,0 +1,10 @@
+CEPV Synthetic Blind Memo — Fixture 002
+
+[1] The outreach unit operates Tuesday, Wednesday, and Thursday, from 09:00 to 15:00.
+[2] The orientation guide version 2.4 lists 12 referral destinations.
+[3] The feedback survey invited 40 participants, and 31 completed it.
+[4] The public QR code directs to https://example.org/raps/info and does not require login.
+[5] The pilot note says the workflow may reduce missed referrals; it does not claim causation or superiority over the baseline.
+[6] The printed booklet uses 12 pt body text and 16 pt headings.
+[7] The follow-up review is planned for 15 October 2026.
+[8] The consent form is a separate document and is not embedded in the booklet.
