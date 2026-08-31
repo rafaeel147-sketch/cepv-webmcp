@@ -41,8 +41,11 @@ assert.strictEqual(result.status, 0, result.stderr);
 const receipt = JSON.parse(fs.readFileSync(path.join(outDir, 'freeze-receipt.json'), 'utf8'));
 const frozenPredictions = fs.readFileSync(path.join(outDir, 'predictions.json'), 'utf8');
 const frozenManifest = fs.readFileSync(path.join(outDir, 'run-manifest.json'), 'utf8');
+const frozenPacket = JSON.parse(fs.readFileSync(path.join(outDir, 'packet.sha256.json'), 'utf8'));
 assert.strictEqual(receipt.predictionsSha256, crypto.createHash('sha256').update(frozenPredictions).digest('hex'));
 assert.strictEqual(receipt.manifestSha256, crypto.createHash('sha256').update(frozenManifest).digest('hex'));
+assert.strictEqual(receipt.packetSha256, frozenPacket.packetSha256);
+assert.strictEqual(receipt.packetSha256, 'caf397b744b56b0e0743caf17ea9f0ae21451d6bb836fec2d9c7b63344bea7ee');
 assert.strictEqual(receipt.referenceVisibleBeforeFreeze, false);
 
 result = spawnSync(process.execPath, [path.join(__dirname, 'freeze.js'), predictionsPath, manifestPath, outDir], { encoding: 'utf8' });

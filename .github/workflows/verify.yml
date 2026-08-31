@@ -30,6 +30,7 @@ jobs:
           node --check evals/mac-013-blind-v1/score.js
           node --check evals/mac-013-blind-v1/validate-package.js
           node --check evals/mac-013-blind-v1/selftest.js
+          node --check evals/mac-013-blind-v1/verify-packet.js
           node --check evals/mac-013-blind-v1/freeze.js
           node --check evals/mac-013-blind-v1/freeze-selftest.js
 
@@ -45,6 +46,7 @@ jobs:
       - name: MAC-013 blind eval package
         run: |
           node evals/mac-013-blind-v1/validate-package.js
+          node evals/mac-013-blind-v1/verify-packet.js
           node evals/mac-013-blind-v1/selftest.js
           node evals/mac-013-blind-v1/freeze-selftest.js
 
