@@ -1,0 +1,17 @@
+{
+  "schema": "mac-013-blind-predictions-v1",
+  "fixture": "synthetic-blind-memo-002",
+  "model": "REPLACE_WITH_MODEL_ID",
+  "runId": "REPLACE_WITH_RUN_ID",
+  "predictions": [
+    { "id": "blind-001", "status": "REPLACE_WITH_supported_misinterpreted_or_unsupported" },
+    { "id": "blind-002", "status": "REPLACE_WITH_supported_misinterpreted_or_unsupported" },
+    { "id": "blind-003", "status": "REPLACE_WITH_supported_misinterpreted_or_unsupported" },
+    { "id": "blind-004", "status": "REPLACE_WITH_supported_misinterpreted_or_unsupported" },
+    { "id": "blind-005", "status": "REPLACE_WITH_supported_misinterpreted_or_unsupported" },
+    { "id": "blind-006", "status": "REPLACE_WITH_supported_misinterpreted_or_unsupported" },
+    { "id": "blind-007", "status": "REPLACE_WITH_supported_misinterpreted_or_unsupported" },
+    { "id": "blind-008", "status": "REPLACE_WITH_supported_misinterpreted_or_unsupported" },
+    { "id": "blind-009", "status": "REPLACE_WITH_supported_misinterpreted_or_unsupported" }
+  ]
+}
