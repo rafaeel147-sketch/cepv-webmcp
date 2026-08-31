@@ -30,6 +30,8 @@ jobs:
           node --check evals/mac-013-blind-v1/score.js
           node --check evals/mac-013-blind-v1/validate-package.js
           node --check evals/mac-013-blind-v1/selftest.js
+          node --check evals/mac-013-blind-v1/freeze.js
+          node --check evals/mac-013-blind-v1/freeze-selftest.js
 
       - name: CEPV deterministic tests
         run: |
@@ -44,6 +46,7 @@ jobs:
         run: |
           node evals/mac-013-blind-v1/validate-package.js
           node evals/mac-013-blind-v1/selftest.js
+          node evals/mac-013-blind-v1/freeze-selftest.js
 
       - name: Static HTTP smoke test
         run: |
