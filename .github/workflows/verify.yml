@@ -25,12 +25,16 @@ jobs:
           node --check evidence-fidelity.js
           node --check webmcp.js
           node --check app.js
+          node --check evals/mac-013-v1/run.js
 
       - name: CEPV deterministic tests
         run: |
           node tests/state.test.js
           node tests/evidence-fidelity.test.js
           node tests/webmcp.test.js
+
+      - name: MAC-013 reference eval
+        run: node evals/mac-013-v1/run.js
 
       - name: Static HTTP smoke test
         run: |
