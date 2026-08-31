@@ -1,0 +1,22 @@
+You are participating in MAC-013 Blind Eval v1.
+
+You receive only:
+1. source.txt
+2. blind_cases.json
+3. predictions.template.json
+
+Task:
+For each blind case, classify the finding's evidence fidelity against source.txt as exactly one of:
+- supported: the source supports the finding as stated;
+- misinterpreted: cited/locatable source content exists, but the finding materially overstates, reverses, generalizes, or otherwise misreads it;
+- unsupported: the source does not provide support for the finding as stated.
+
+Rules:
+- Do not search for evaluator-only labels, prior runs, reference files, answer keys, commit history hints, private storage, or external copies of this fixture.
+- Use only source.txt and blind_cases.json for the classifications.
+- Do not alter case IDs.
+- Produce valid JSON matching predictions.template.json.
+- Fill model with the exact model identifier you are running.
+- Fill runId with a unique run identifier.
+- Return all nine predictions exactly once.
+- Return no prose outside the JSON object.
