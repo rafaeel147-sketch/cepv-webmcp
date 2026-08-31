@@ -1,0 +1,12 @@
+{
+  "schema": "mac-013-blind-packet-integrity-v1",
+  "fixture": "synthetic-blind-memo-002",
+  "algorithm": "sha256",
+  "files": {
+    "AGENT_PROMPT.txt": "f003166b9d3501c6614ab64e2f1f9b2fa27b87a6e47f4813ded2139fb154cdaa",
+    "blind_cases.json": "9d0e2dcf3bac90871276b642ce3940545766bdfbc58c7108cee9aca3b2dea366",
+    "predictions.template.json": "1339f8e4cefcab87aac664f2f9a3c7802ca85a544960bd3df2fd3c420e118404",
+    "source.txt": "fee7505457dd5a432540cc3bb6f451b32baf593d3c7c3be8809f07831b83fb5d"
+  },
+  "packetSha256": "caf397b744b56b0e0743caf17ea9f0ae21451d6bb836fec2d9c7b63344bea7ee"
+}
