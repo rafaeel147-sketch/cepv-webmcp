@@ -22,12 +22,14 @@ jobs:
       - name: JavaScript syntax
         run: |
           node --check state.js
+          node --check evidence-fidelity.js
           node --check webmcp.js
           node --check app.js
 
       - name: CEPV deterministic tests
         run: |
           node tests/state.test.js
+          node tests/evidence-fidelity.test.js
           node tests/webmcp.test.js
 
       - name: Static HTTP smoke test
@@ -37,3 +39,4 @@ jobs:
           trap 'kill $SERVER_PID' EXIT
           sleep 1
           curl --fail --silent http://127.0.0.1:8080/ | grep -q 'CEPV × WebMCP'
+          curl --fail --silent http://127.0.0.1:8080/ | grep -q 'MAC-013 candidate'

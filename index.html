@@ -40,6 +40,16 @@
     <div id="checks" class="checks"></div>
   </section>
 
+  <section class="panel">
+    <h2>MAC-013 candidate — Evidence Fidelity / Grounding</h2>
+    <p class="meta">A finding can contain an evidence field and still misquote or invent the source. MAC-013 keeps evidence fidelity separate from accuracy. Human adjudication classifies each finding as supported, misinterpreted, or unsupported.</p>
+    <div class="grid">
+      <div><h3>Specialist / CEPV</h3><p id="evidence-specialist" class="meta"></p></div>
+      <div><h3>Baseline</h3><p id="evidence-baseline" class="meta"></p></div>
+    </div>
+    <p class="meta"><b>EFR</b> = supported / reviewed · <b>UFR</b> = unsupported / reviewed · <b>MIR</b> = misinterpreted / reviewed. Review coverage is published separately. This candidate metric does not yet modify CHECK-008 automatically.</p>
+  </section>
+
   <section class="grid">
     <article class="panel">
       <h2>Human-side finding entry</h2>
@@ -65,9 +75,9 @@
         <li><code>cepv_record_check_result</code> — record passed/blocked/failed for CHECK-001..007.</li>
         <li><code>cepv_submit_candidate_finding</code> — add an evidence-backed baseline or specialist finding.</li>
         <li><code>cepv_list_findings</code> — inspect findings without changing them.</li>
-        <li><code>cepv_export_audit_packet</code> — export the traceable session snapshot.</li>
+        <li><code>cepv_export_audit_packet</code> — export the traceable session snapshot, including MAC-013 evidence metrics.</li>
       </ul>
-      <p class="meta"><b>Not exposed:</b> human confirmation/rejection. That boundary is deliberate.</p>
+      <p class="meta"><b>Not exposed:</b> human confirmation/rejection or evidence-fidelity adjudication. Those boundaries are deliberate.</p>
     </article>
   </section>
 
@@ -83,6 +93,7 @@
 </main>
 <footer><div class="wrap">CEPV — Companheiros Especialistas com Progresso Validado · WebMCP adapter v0.1 · no external network calls · no API key in browser.</div></footer>
 <script src="state.js"></script>
+<script src="evidence-fidelity.js"></script>
 <script src="webmcp.js"></script>
 <script src="app.js"></script>
 </body>
