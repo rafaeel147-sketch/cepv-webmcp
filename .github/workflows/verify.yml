@@ -26,6 +26,10 @@ jobs:
           node --check webmcp.js
           node --check app.js
           node --check evals/mac-013-v1/run.js
+          node --check evals/mac-013-blind-v1/score-lib.js
+          node --check evals/mac-013-blind-v1/score.js
+          node --check evals/mac-013-blind-v1/validate-package.js
+          node --check evals/mac-013-blind-v1/selftest.js
 
       - name: CEPV deterministic tests
         run: |
@@ -35,6 +39,11 @@ jobs:
 
       - name: MAC-013 reference eval
         run: node evals/mac-013-v1/run.js
+
+      - name: MAC-013 blind eval package
+        run: |
+          node evals/mac-013-blind-v1/validate-package.js
+          node evals/mac-013-blind-v1/selftest.js
 
       - name: Static HTTP smoke test
         run: |
