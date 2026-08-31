@@ -1,0 +1,13 @@
+{
+  "schema": "mac-013-blind-run-manifest-v1",
+  "fixture": "synthetic-blind-memo-002",
+  "model": "REPLACE_WITH_EXACT_MODEL_ID",
+  "runId": "REPLACE_WITH_UNIQUE_RUN_ID",
+  "promptFile": "AGENT_PROMPT.txt",
+  "sourceFile": "source.txt",
+  "casesFile": "blind_cases.json",
+  "predictionSchemaFile": "predictions.template.json",
+  "toolPolicy": "source-and-cases-only",
+  "referenceVisibleBeforeFreeze": false,
+  "notes": ""
+}
