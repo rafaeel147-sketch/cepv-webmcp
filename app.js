@@ -9,9 +9,19 @@
     return String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
   }
 
+  function pct(value) {
+    return value == null ? '—' : `${(value * 100).toFixed(1)}%`;
+  }
+
+  function evidenceMetricText(metrics) {
+    return `review coverage ${pct(metrics.reviewCoverage)} · EFR ${pct(metrics.evidenceFidelityRate)} · UFR ${pct(metrics.unsupportedFindingRate)} · MIR ${pct(metrics.misinterpretationRate)} · supported ${metrics.supported} · misinterpreted ${metrics.misinterpreted} · unsupported ${metrics.unsupported}`;
+  }
+
   function render() {
     const state = CEPVState.loadState();
     const gate = CEPVState.gate(state);
+    const specialistEvidence = CEPVState.evidenceMetrics(state, 'specialist');
+    const baselineEvidence = CEPVState.evidenceMetrics(state, 'baseline');
     $('#session-id').textContent = state.sessionId;
     $('#artifact-label').value = state.artifact.label || '';
     $('#artifact-note').value = state.artifact.note || '';
@@ -42,19 +52,36 @@
     $('#gate-reason').textContent = gate.reason;
     $('#gate-counts').textContent = `passed ${gate.counts.passed}/7 · blocked ${gate.counts.blocked} · failed ${gate.counts.failed} · not run ${gate.counts.notRun} · pending ${gate.counts.pendingFindings} · confirmed ${gate.counts.confirmedFindings}`;
 
+    $('#evidence-specialist').textContent = evidenceMetricText(specialistEvidence);
+    $('#evidence-baseline').textContent = evidenceMetricText(baselineEvidence);
+
     const findings = [...state.findings].reverse();
-    $('#findings').innerHTML = findings.length ? findings.map(f => `
+    $('#findings').innerHTML = findings.length ? findings.map(f => {
+      const evidenceReview = CEPVState.getEvidenceReview(f.id);
+      return `
       <article class="finding ${f.status}">
         <header><div><strong>${esc(f.run.toUpperCase())}${f.checkId ? ` · ${esc(f.checkId)}` : ''}</strong><span class="severity ${esc(f.severity)}">${esc(f.severity)}</span></div><span class="badge ${esc(f.status)}">${esc(f.status)}</span></header>
         <h3>${esc(f.summary)}</h3>
         <p><b>Evidence:</b> ${esc(f.evidence)}</p>
+        <p><b>Evidence fidelity:</b> <span class="badge ${esc(evidenceReview.status)}">${esc(evidenceReview.status)}</span>${evidenceReview.note ? ` · ${esc(evidenceReview.note)}` : ''}</p>
         <small>Submitted by ${esc(f.submittedBy)} · ${esc(new Date(f.createdAt).toLocaleString())}</small>
+        <div class="review-actions">
+          <button class="secondary" data-evidence-review="supported" data-id="${esc(f.id)}">Evidence: supported</button>
+          <button class="secondary" data-evidence-review="misinterpreted" data-id="${esc(f.id)}">Evidence: misinterpreted</button>
+          <button class="secondary" data-evidence-review="unsupported" data-id="${esc(f.id)}">Evidence: unsupported</button>
+        </div>
         ${f.status === 'pending_human_validation' ? `<div class="review-actions"><button data-review="confirmed_issue" data-id="${esc(f.id)}">Human: confirm issue</button><button class="secondary" data-review="rejected" data-id="${esc(f.id)}">Human: reject</button></div>` : ''}
-      </article>`).join('') : '<p class="empty">No findings recorded yet.</p>';
+      </article>`;
+    }).join('') : '<p class="empty">No findings recorded yet.</p>';
 
     $$('#findings [data-review]').forEach(btn => btn.addEventListener('click', () => {
       const current = CEPVState.loadState();
       CEPVState.humanReviewFinding(current, btn.dataset.id, btn.dataset.review);
+      render();
+    }));
+
+    $$('#findings [data-evidence-review]').forEach(btn => btn.addEventListener('click', () => {
+      CEPVState.reviewEvidence(btn.dataset.id, btn.dataset.evidenceReview);
       render();
     }));
   }
